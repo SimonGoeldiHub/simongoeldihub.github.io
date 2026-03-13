@@ -105,21 +105,45 @@ const checkouts={
 119: {"optimal": ["T19", "S12", "D25"], "miss": ["S19", "T20", "D20"]},
 120: {"optimal": ["T20", "S20", "D20"], "miss": ["S20", "T20", "D20"]},
 
-121: {"optimal": ["T20", "T11", "D14"], "miss": ["S20", "T17", "D25"], "miss2": ["T20", "S11", "D25"]},
-122: {"optimal": ["T18", "T18", "D7"], "miss": ["S18", "T18", "D25"], "miss2": ["T18", "S18", "D25"]},
-123: {"optimal": ["T19", "T16", "D9"], "miss": ["S19", "T18", "D25"], "miss2": ["T19", "S16", "D25"]},
-124: {"optimal": ["T20", "S16", "D8"], "miss": ["S20", "T18", "D25"], "alt": ["T20", "S14", "D25"]},
-125: {"optimal": ["D25", "T17", "D12"], "miss": ["S25", "T20", "D20"]},
-126: {"optimal": ["T19", "T19", "D6"], "miss": ["S19", "T19", "D25"], "miss2": ["T19", "S19", "D25"]},
+121: {"optimal": ["T20", "T11", "D14"], "miss": ["S20", "T17", "D25"], "miss2": ["T20", "S11", "D25"],
+    "_optimal": ["T17", "T20", "D5"], "_miss": ["S17", "T18", "D25"], "_miss2": ["T17", "S20", "D25"]
+},
+122: {"optimal": ["T18", "T18", "D7"], "miss": ["S18", "T18", "D25"], "miss2": ["T18", "S18", "D25"],
+    "_optimal": ["T15", "T15", "D16"], "_miss": ["S15", "T19", "D25"]
+},
+123: {"optimal": ["T19", "T16", "D9"], "miss": ["S19", "T18", "D25"], "miss2": ["T19", "S16", "D25"],
+    "_optimal": ["D25", "T19", "D8"], "_miss": ["S25", "T20", "D19"]
+},
+124: {"optimal": ["T20", "S16", "D8"], "miss": ["S20", "T18", "D25"], "alt": ["T20", "S14", "D25"],
+    
+},
+125: {"optimal": ["D25", "T17", "D12"], "miss": ["S25", "T20", "D20"],
+    "_optimal": ["T15", "T16", "D16"], "_miss": ["S15", "T20", "D25"]
+},
+126: {"optimal": ["T19", "T19", "D6"], "miss": ["S19", "T19", "D25"], "miss2": ["T19", "S19", "D25"],
+    "_optimal": ["T16", "T18", "D12"], "_miss": ["S16", "T20", "D25"]
+},
 127: {"optimal": ["T20", "T17", "D8"], "miss": ["S20", "T19", "D25"], "miss2": ["T20", "S17", "D25"]},
-128: {"optimal": ["T18", "T14", "D16"], "miss": ["S18", "T20", "D25"]},
-129: {"optimal": ["T19", "T16", "D12"], "miss": ["S19", "T20", "D25"]},
-130: {"optimal": ["T20", "T20", "D5"], "miss": ["S20", "T20", "D25"]},
+128: {"optimal": ["T18", "T14", "D16"], "miss": ["S18", "T20", "D25"],
+    "_optimal": ["T18", "T18", "D10"], "_miss": ["S18", "T20", "D25"]
+},
+129: {"optimal": ["T19", "T16", "D12"], "miss": ["S19", "T20", "D25"],},
+130: {"optimal": ["T20", "T20", "D5"], "miss": ["S20", "T20", "D25"],
+    "_optimal": ["T20", "T10", "D20"], "_miss": ["S20", "T20", "D25"]
+},
 
-131: {"optimal": ["T20", "T13", "D16"]},
-132: {"optimal": ["D25", "T14", "D20"], "miss": ["S25", "T19", "D25"]},
-133: {"optimal": ["T20", "T11", "D20"]},
-134: {"optimal": ["T20", "T14", "D16"]},
+131: {"optimal": ["T20", "T13", "D16"],
+    "_optimal": ["T17", "T16", "D16"]
+},
+132: {"optimal": ["D25", "T14", "D20"], "miss": ["S25", "T19", "D25"],
+    "_optmial": ["T18", "T18", "D12"]
+},
+133: {"optimal": ["T20", "T11", "D20"],
+    "_optimal": ["T20", "T19", "D8"]
+},
+134: {"optimal": ["T20", "T14", "D16"],
+    "_optimal": ["T18", "T16", "D16"]
+},
 135: {"optimal": ["D25", "T15", "D20"], "miss": ["S25", "T20", "D25"]},
 136: {"optimal": ["T20", "T20", "D8"]}, 
 137: {"optimal": ["T20", "T19", "D10"]}, 
@@ -161,8 +185,14 @@ const radius=200;
 let score;
 let optimal=[];
 let miss=[];
+let miss2=[];
+let _optimal=[];
+let _miss=[];
+let _miss2=[];
 let step=0;
 let missActivated=false;
+let miss2Activated=false;
+let alt=false
 
 // Dartboard zeichnen
 function drawBoard(){
@@ -203,12 +233,18 @@ function newRound(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBoard();
 
-    let keys=Object.keys(checkouts);
+    let keys= Object.keys(checkouts);
     score=keys[Math.floor(Math.random()*keys.length)];
     optimal=[...checkouts[score].optimal];
     miss=checkouts[score].miss||[];
+    miss2=checkouts[score].miss2||[];
+    _optimal=checkouts[score]._optimal||[];
+    _miss=checkouts[score]._miss||[];
+    _miss2=checkouts[score]._miss2||[];
     step=0;
     missActivated=false;
+    miss2Activated=false;
+    alt_act = false
 
     document.getElementById("score").innerText="Score: "+score;
     document.getElementById("info").innerText="";
@@ -252,6 +288,7 @@ function getFieldCenter(field){
 }
 
 // Klick-Event
+
 canvas.addEventListener("click", e=>{
     let rect=canvas.getBoundingClientRect();
     let x=e.clientX-rect.left;
@@ -260,19 +297,30 @@ canvas.addEventListener("click", e=>{
     let field=getField(x,y);
     if(!field) return;
 
+    let alt=_optimal[step];
     let correct=optimal[step];
 
-    if(field===correct){
+    if(field===alt && alt.length>0 && field!==correct && step<2){alt_act=true}
+
+    if(field===correct && !alt_act){
         // ⚡ Miss nur nach erstem Dart
         if(step===0 && !missActivated && miss.length>0 && Math.random()<0.5){
             optimal=miss;
             missActivated=true;
-            document.getElementById("info").innerText=`⚠️ Miss ${optimal[0]}`;
+            document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
+        }
+        if(step===1 && !miss2Activated && miss.length>0 && Math.random()<0.5){
+            optimal=miss2;
+            miss2Activated=true;
+            document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
         }
 
         // Punkt malen
         ctx.beginPath();
         if(missActivated){
+            let coords=getFieldCenter(optimal[step]);
+            ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
+        } else if(miss2Activated){
             let coords=getFieldCenter(optimal[step]);
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else {
@@ -286,9 +334,43 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
         } else if(step === 1 && !missActivated) {
-            document.getElementById("info").innerText="Richtig! ✨";
+            document.getElementById("info").innerText="Richtig! ✨";        
+        }
+    }else if(field===alt){
+        alt_act=true
+        // ⚡ Miss nur nach erstem Dart
+        if(step===0 && !missActivated && _miss.length>0 && Math.random()<0.5){
+            _optimal=_miss;
+            missActivated=true;
+            document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
+        }
+        if(step===1 && !miss2Activated && _miss2.length>0 && Math.random()<0.5){
+            _optimal=_miss2;
+            miss2Activated=true;
+            document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
         }
 
+        // Punkt malen
+        ctx.beginPath();
+        if(missActivated){
+            let coords=getFieldCenter(_optimal[step]);
+            ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
+        } else if(miss2Activated){
+            let coords=getFieldCenter(_optimal[step]);
+            ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
+        } else {
+            ctx.arc(x, y, 5, 0, Math.PI*2);
+        }
+        ctx.fillStyle="green";
+        ctx.fill();
+
+        step++;
+        if(step>=_optimal.length){
+            document.getElementById("info").innerText="✅ Checkout!";
+            setTimeout(newRound,1500);
+        } else if(step === 1 && !missActivated) {
+            document.getElementById("info").innerText="Richtig! ✨";
+        }
     } else {
         document.getElementById("info").innerText=`❌ Falsch (${field})`;
     }
