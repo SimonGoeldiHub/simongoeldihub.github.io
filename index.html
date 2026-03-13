@@ -285,7 +285,7 @@ canvas.addEventListener("click", e=>{
         if(step>=optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
-        } else {
+        } else if(step === 1 && !missActivated) {
             document.getElementById("info").innerText="Richtig! ✨";
         }
 
