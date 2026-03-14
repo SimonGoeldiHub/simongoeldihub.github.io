@@ -11,12 +11,14 @@ body{
 font-family: Arial;
 text-align:center;
 background:#f5f5f5;
+margin:0;
 }
 
 canvas{
 background:white;
 border:2px solid black;
-margin-top:20px;
+margin-top:20px;;
+justify-content: center;
 }
 
 #score{
@@ -36,7 +38,7 @@ margin-top:10px;
 <h1>Checkout Trainer 🎯</h1>
 
 <div id="score"></div>
-<canvas id="board" width="500" height="500"></canvas>
+<canvas id="board"></canvas>
 <div id="info"></div>
 
 <script>
@@ -279,15 +281,16 @@ const values={
 "T": 3,
 "D": 2
 };
-const canvas=document.getElementById("board");
-const ctx=canvas.getContext("2d");
-const size = Math.min(window.innerWidth * 0.9, 500);
+const canvas = document.getElementById("board");
+const ctx = canvas.getContext("2d");
+
+const size = Math.min(window.innerWidth-4, 500);
 
 canvas.width = size;
 canvas.height = size;
 
-const center = size/2;
-const radius = size*0.4;
+const center = size / 2;
+const radius = size * 0.42;
 
 let score;
 let optimal=[];
@@ -304,10 +307,16 @@ let alt=false;
 let rest;
 let false_click=0;
 let alt_act = false;
-
+ let rings=[
+    radius,
+    radius*0.85,
+    radius*0.6,
+    radius*0.45,
+    radius*0.15,
+    radius*0.05]
 // Dartboard zeichnen
 function drawBoard(){
-    let rings=[200,170,120,90,30,10];
+
     rings.forEach(r=>{
         ctx.beginPath();
         ctx.arc(center,center,r,0,Math.PI*2);
@@ -315,21 +324,24 @@ function drawBoard(){
     });
 
     for(let i=0;i<20;i++){
-        let angle=(i*18-81)*Math.PI/180;
-        let x0=center+30*Math.cos(angle);
-        let y0=center+30*Math.sin(angle);
-        let x1=center+radius*Math.cos(angle);
-        let y1=center+radius*Math.sin(angle);
-        ctx.beginPath();
-        ctx.moveTo(x0,y0);
-        ctx.lineTo(x1,y1);
-        ctx.stroke();
+    let angle=(i*18-81)*Math.PI/180;
+
+    let x0=center+radius*0.15*Math.cos(angle);
+    let y0=center+radius*0.15*Math.sin(angle);
+
+    let x1=center+radius*Math.cos(angle);
+    let y1=center+radius*Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.moveTo(x0,y0);
+    ctx.lineTo(x1,y1);
+    ctx.stroke();
     }
 
     numbers.forEach((n,i)=>{
         let angle=(i*18-90)*Math.PI/180;
-        let x=center+220*Math.cos(angle);
-        let y=center+220*Math.sin(angle);
+        let x=center+radius*1.1*Math.cos(angle);
+        let y=center+radius*1.1*Math.sin(angle);
         ctx.font="20px Arial";
         ctx.fillStyle="black";
         ctx.textAlign="center";
@@ -373,11 +385,11 @@ function getField(x,y){
     let sector=Math.floor(angle/18)%20;
     let number=numbers[sector];
 
-    if(dist<10) return "D25";
-    if(dist<30) return "S25";
-    if(dist>90 && dist<120) return "T"+number;
-    if(dist>170 && dist<200) return "D"+number;
-    if(dist<200) return "S"+number;
+    if(dist<rings[5]) return "D25";
+    if(dist<rings[4]) return "S25";
+    if(dist>rings[3] && dist<rings[2]) return "T"+number;
+    if(dist>rings[1] && dist<rings[0]) return "D"+number;
+    if(dist<rings[0]) return "S"+number;
 
     return null;
 }
