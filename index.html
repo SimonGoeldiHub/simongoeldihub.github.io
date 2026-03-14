@@ -357,7 +357,7 @@ function newRound(){
     drawBoard();
 
     let keys= Object.keys(checkouts);
-    score=keys[Math.floor(Math.random()*keys.length)];
+    score=132; //keys[Math.floor(Math.random()*keys.length)];
     rest=score
     optimal=[...checkouts[score].optimal];
     miss=checkouts[score].miss||[];
@@ -458,13 +458,13 @@ canvas.addEventListener("click", e=>{
         if(missActivated){
             let coords=getFieldCenter(optimal[step]);
             if (optimal[step] == "S25"){
-                coords = {x:width/2, y:radius*0.1}
+                coords = {x:canvas.width/2, y:canvas.height/2+radius*0.1}
             }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else if(miss2Activated){
             let coords=getFieldCenter(optimal[step]);
             if (optimal[step] == "S25"){
-                coords = {x:width/2, y:radius*0.1}
+                coords = {x:canvas.width/2, y:canvas.height/2+radius*0.1}
             }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else {
@@ -506,13 +506,13 @@ canvas.addEventListener("click", e=>{
         if(missActivated){
             let coords=getFieldCenter(_optimal[step]);
             if (_optimal[step] == "S25"){
-                coords = {x:250, y:230}
+                coords = {x:canvas.width/2, y:canvas.height/2+radius*0.1}
             }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else if(miss2Activated){
             let coords=getFieldCenter(_optimal[step]);
             if (_optimal[step] == "S25"){
-                coords = {x:250, y:230}
+                coords = {x:canvas.width/2, y:canvas.height/2+radius*0.1}
             }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else {
