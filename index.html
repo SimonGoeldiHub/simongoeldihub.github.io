@@ -406,9 +406,9 @@ function getFieldCenter(field){
     let angle=(sector*18-90)*Math.PI/180;
 
     let r;
-    if(type==="S") r=145;
-    if(type==="T") r=105;
-    if(type==="D") r=185;
+    if(type==="S") r=(rings[1]+rings[2])/2;
+    if(type==="T") r=(rings[2]+rings[3])/2;
+    if(type==="D") r=(rings[0]+rings[1])/2;
 
     return {x:center + r*Math.cos(angle), y:center + r*Math.sin(angle)};
 }
@@ -425,12 +425,14 @@ canvas.addEventListener("click", e=>{
     let alt=_optimal[step];
     let correct=optimal[step];
     let alt_ind= false;
+    let miss_test = _miss[step];
 
-    if (alt_out && field===alt_out && field!==correct && field!==alt && step<2){
-        if(alt_act){alt=alt_out; alt_ind=true; _optimal=alternative;
-        }else{correct=alt_out; alt_ind=true; optimal=alternative;
-        }
+    if (alt_out && field===alt_out && field!==correct && optimal[0]===alternative[0] && field!==alt && step<2){
         
+        correct=alt_out; alt_ind=true; optimal=alternative;
+    }
+    if (alt_out && field===alt_out && field!==correct && alt_act && _optimal[0]===alternative[0] && field!==alt && step<2){
+        alt=alt_out; alt_ind=true; _optimal=alternative;    
     }
 
     if(field===alt && alt && field!==correct && step<2){alt_act=true}
@@ -456,13 +458,13 @@ canvas.addEventListener("click", e=>{
         if(missActivated){
             let coords=getFieldCenter(optimal[step]);
             if (optimal[step] == "S25"){
-                coords = {x:250, y:230}
+                coords = {x:width/2, y:radius*0.1}
             }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else if(miss2Activated){
             let coords=getFieldCenter(optimal[step]);
             if (optimal[step] == "S25"){
-                coords = {x:250, y:230}
+                coords = {x:width/2, y:radius*0.1}
             }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else {
