@@ -366,7 +366,7 @@ function newRound(){
     drawBoard();
 
     let keys= Object.keys(checkouts);
-    score=67 //keys[Math.floor(Math.random()*keys.length)];
+    score=keys[Math.floor(Math.random()*keys.length)];
     rest=score
     optimal=[...checkouts[score].optimal];
     miss=checkouts[score].miss||[];
