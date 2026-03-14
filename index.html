@@ -76,7 +76,7 @@ const checkouts={
 75: {"optimal": ["T17", "D12"], "miss": ["S17", "S18", "D20"],
     "_optimal": ["S17", "S18", "D20"]
 },
-76: {"optimal": ["T20", "D8"], "miss": ["S20", "S16", "D20"],
+76: {"optimal": ["T20", "D8"], "miss": ["S20", "S16", "D20"],"alt": ["T12", "D20"],
     "_optimal": ["S20", "S16", "D20"]
 },
 77: {"optimal": ["T19", "D10"], "miss": ["S19", "S18", "D20"]},
@@ -87,7 +87,7 @@ const checkouts={
     "_optimal": ["S19", "S20", "D20"]
 },
 80: {"optimal": ["T20", "D10"], "miss": ["S20", "S20", "D20"],
-    "_optimal": ["S20","S20","D20"] 
+    "_optimal": ["S20","S20","D20"], "alt": ["D20", "D20"]
 },
 
 81: {"optimal": ["T19", "D12"], "miss": ["S19", "T12", "D13"], "alt": ["S19", "S12", "D25"],
@@ -123,25 +123,37 @@ const checkouts={
 96: {"optimal": ["T20", "D18"], "miss": ["S20", "T20", "D8"]},
 97: {"optimal": ["T19", "D20"], "miss": ["S19", "T18", "D12"]},
 98: {"optimal": ["T20", "D19"], "miss": ["S20", "T18", "D12"]},
-99: {"optimal": ["T19", "S10", "D16"], "miss": ["S19", "T20", "D10"]},
-100: {"optimal": ["T20", "D20"], "miss": ["S20", "T20", "D10"]},
-101: {"optimal": ["T20", "S9", "D16"], "miss": ["S20", "T17", "D15"]},
-102: {"optimal": ["T20", "S10", "D16"], "miss": ["S20", "T14", "D20"]},
-103: {"optimal": ["T19", "S14", "D16"], "miss": ["S19", "T20", "D12"]},
-104: {"optimal": ["T18", "S18", "D16"], "miss": ["S18", "T18", "D16"]},
-105: {"optimal": ["T20", "S13", "D16"], "miss": ["S20", "T15", "D20"]},
-106: {"optimal": ["T20", "S14", "D16"], "miss": ["S20", "T18", "D16"]},
-107: {"optimal": ["T19", "S18", "D16"], "miss": ["S19", "T20", "D19"]},
-108: {"optimal": ["T20", "S16", "D16"], "miss": ["S20", "T20", "D14"]},
-109: {"optimal": ["T20", "S9", "D20"], "miss": ["S20", "T19", "D16"]},
-110: {"optimal": ["T20", "S10", "D20"], "miss": ["S20", "T18", "D18"]},
+99: {"optimal": ["T19", "S10", "D16"], "miss": ["S19", "T20", "D10"], "alt": ["S19", "T16", "D16"]},
+100: {"optimal": ["T20", "D20"], "miss": ["S20", "T20", "D10"], "alt": ["S20", "D20", "D20"]},
+101: {"optimal": ["T20", "S9", "D16"], "miss": ["S20", "T17", "D15"], "alt": ["T20", "S1", "D20"]},
+102: {"optimal": ["T20", "S10", "D16"], "miss": ["S20", "T14", "D20"], "alt": ["T20", "S2", "D20"]},
+103: {"optimal": ["T19", "S14", "D16"], "miss": ["S19", "T20", "D12"], "alt": ["T19", "S6", "D20"]},
+104: {"optimal": ["T18", "S18", "D16"], "miss": ["S18", "T18", "D16"], "alt": ["T18", "S10", "D20"],
+    "_optimal": ["T19", "S15", "D16"], "_miss": ["S19", "T15", "D20"]
+},
+105: {"optimal": ["T20", "S13", "D16"], "miss": ["S20", "T15", "D20"], "alt": ["T20", "S5", "D20"]},
+106: {"optimal": ["T20", "S14", "D16"], "miss": ["S20", "T18", "D16"], "alt": ["T20", "S6", "D20"]},
+107: {"optimal": ["T19", "S18", "D16"], "miss": ["S19", "T20", "D19"], "alt": ["T19", "S10", "D20"]},
+108: {"optimal": ["T20", "S16", "D16"], "miss": ["S20", "T20", "D14"], "alt": ["T20", "S8", "D20"],
+    "_optimal": ["T18", "S14", "D20"], "_miss": ["S18", "T18", "D18"]
+},
+109: {"optimal": ["T20", "S9", "D20"], "miss": ["S20", "T19", "D16"], "alt": ["T20", "S9", "D20"],
+    "_optimal": ["T19", "S20", "D16"], "_miss": ["S19", "T18", "D18"]
+},
+110: {"optimal": ["T20", "S10", "D20"], "miss": ["S20", "T18", "D18"], "alt": ["T20", "S18", "D16"]},
 
-111: {"optimal": ["T20", "S11", "D20"], "miss": ["S20", "T19", "D17"]},
+111: {"optimal": ["T20", "S11", "D20"], "miss": ["S20", "T17", "D20"],
+    "_optimal": ["T19", "S14", "D20"], "_miss": ["S19", "T20", "D16"]
+},
 112: {"optimal": ["T20", "S12", "D20"], "miss": ["S20", "T20", "D16"]},
 113: {"optimal": ["T20", "S13", "D20"], "miss": ["S20", "T19", "D18"]},
-114: {"optimal": ["T20", "S14", "D20"], "miss": ["S20", "T20", "D17"]},
-115: {"optimal": ["T20", "S15", "D20"], "miss": ["S20", "T19", "D19"]},
-116: {"optimal": ["T20", "S16", "D20"], "miss": ["S20", "T20", "D18"]},
+114: {"optimal": ["T20", "S14", "D20"], "miss": ["S20", "T18", "D20"]},
+115: {"optimal": ["T20", "S15", "D20"], "miss": ["S20", "T19", "D19"],
+        "_optimal": ["T19", "S18", "D20"], "_miss": ["S19", "T20", "D18"]
+},
+116: {"optimal": ["T20", "S16", "D20"], "miss": ["S20", "T20", "D18"],
+    "_optimal": ["T19", "S19", "D20"], "_miss": ["S19", "T19", "D20"]
+},
 117: {"optimal": ["T20", "S17", "D20"], "miss": ["S20", "T19", "D20"]},
 118: {"optimal": ["T20", "S18", "D20"], "miss": ["S20", "T20", "D19"]},
 119: {"optimal": ["T19", "S12", "D25"], "miss": ["S19", "T20", "D20"]},
@@ -186,36 +198,77 @@ const checkouts={
 134: {"optimal": ["T20", "T14", "D16"],
     "_optimal": ["T18", "T16", "D16"]
 },
-135: {"optimal": ["D25", "T15", "D20"], "miss": ["S25", "T20", "D25"]},
-136: {"optimal": ["T20", "T20", "D8"]}, 
-137: {"optimal": ["T20", "T19", "D10"]}, 
-138: {"optimal": ["T20", "T18", "D12"]}, 
-139: {"optimal": ["T20", "T19", "D11"]}, 
-140: {"optimal": ["T20", "T20", "D10"]}, 
+135: {"optimal": ["D25", "T15", "D20"], "miss": ["S25", "T20", "D25"],
+},
+136: {"optimal": ["T20", "T20", "D8"],
+    "alt": ["T16", "T16", "D20"]
+}, 
+137: {"optimal": ["T20", "T15", "D16"],
+    "_optimal": ["T19", "T16", "D16"]
+}, 
+138: {"optimal": ["T20", "T18", "D12"],
+    "_optimal": ["T19", "T19", "D12"]
+}, 
+139: {"optimal": ["T20", "T13", "D20"],
+    "_optimal": ["T19", "T14", "D20"]
+}, 
+140: {"optimal": ["T20", "T20", "D10"],
+    "_optimal": ["T18", "T18", "D16"]
+}, 
 
-141: {"optimal": ["T20", "T19", "D12"]},
-142: {"optimal": ["T20", "T14", "D20"]},
-143: {"optimal": ["T20", "T17", "D16"]},
+141: {"optimal": ["T20", "T19", "D12"],
+    "_optimal": ["T19", "T16", "D18"]
+},
+142: {"optimal": ["T20", "T14", "D20"],
+    "_optimal": ["T17", "T17", "D20"]
+},
+143: {"optimal": ["T20", "T17", "D16"],
+    "_optimal": ["T19", "T18", "D16"]
+},
 144: {"optimal": ["T20", "T20", "D12"]},
-145: {"optimal": ["T20", "T15", "D20"]},
-146: {"optimal": ["T20", "T18", "D16"]},
-147: {"optimal": ["T20", "T17", "D18"]},
-148: {"optimal": ["T20", "T16", "D20"]},
+145: {"optimal": ["T20", "T15", "D20"],
+    "_optimal": ["T20", "T15", "D20"]
+ },
+146: {"optimal": ["T20", "T18", "D16"],
+    "_optimal": ["T20", "T18", "D16"]
+},
+147: {"optimal": ["T20", "T17", "D18"],
+    "_optimal": ["T19", "T18", "D18"]
+},
+148: {"optimal": ["T20", "T16", "D20"],
+    "_optimal": ["T18", "T18", "D20"]
+},
 149: {"optimal": ["T20", "T19", "D16"]},
-150: {"optimal": ["T20", "T18", "D18"]},
+150: {"optimal": ["T20", "T18", "D18"],
+    "_optimal": ["T19", "T19", "D18"]
+},
 
-151: {"optimal": ["T20", "T17", "D20"]},
+151: {"optimal": ["T20", "T17", "D20"],
+    "_optimal": ["T19", "T18", "D20"]
+},
 152: {"optimal": ["T20", "T20", "D16"]},
 153: {"optimal": ["T20", "T19", "D18"]},
-154: {"optimal": ["T20", "T18", "D20"]},
-155: {"optimal": ["T20", "T19", "D19"]},
+154: {"optimal": ["T20", "T18", "D20"],
+    "_optimal": ["T19", "T19", "D20"]
+},
+155: {"optimal": ["T20", "T19", "D19"],
+    "_optimal": ["T19", "T20", "D19"]
+},
 156: {"optimal": ["T20", "T20", "D18"]},
-157: {"optimal": ["T20", "T19", "D20"]},
+157: {"optimal": ["T20", "T19", "D20"],
+    "_optimal": ["T19", "T20", "D20"]
+},
 158: {"optimal": ["T20", "T20", "D19"]},
 160: {"optimal": ["T20", "T20", "D20"]},
-161: {"optimal": ["T20", "T17", "D25"]},
-164: {"optimal": ["T20", "T18", "D25"]},
-167: {"optimal": ["T20", "T19", "D25"]},
+161: {"optimal": ["T20", "T17", "D25"],
+    "_optimal": ["T17", "T20", "D25"]
+},
+164: {"optimal": ["T20", "T18", "D25"],
+    "_optimal": ["T18", "T20", "D25"]
+},
+167: {"optimal": ["T20", "T19", "D25"],
+    "_optimal": ["T19", "T20", "D25"]
+},
 170: {"optimal": ["T20", "T20", "D25"]}
 };
 
@@ -403,9 +456,12 @@ canvas.addEventListener("click", e=>{
         if(step>=optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
-        } else if(step === 1 && !missActivated) {
-            document.getElementById("info").innerText=`Hit ${field}!`;        
+        } else if(step === 1 && !missActivated && !alt_ind) {
+            document.getElementById("info").innerText=`Hit ${field}!`;
+        } else if(step === 1 && !missActivated && alt_ind) {
+            document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
+        
     }else if(field===alt){
 
         false_click=0;
@@ -448,8 +504,10 @@ canvas.addEventListener("click", e=>{
         if(step>=_optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
-        } else if(step === 1 && !missActivated) {
+        } else if(step === 1 && !missActivated && !alt_ind) {
             document.getElementById("info").innerText=`Hit ${field}!`;
+        } else if(step === 1 && !missActivated && alt_ind) {
+            document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
 
     } else {
