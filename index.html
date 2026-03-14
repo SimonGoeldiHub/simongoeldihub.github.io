@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Checkout Trainer 🎯</title>
 
@@ -18,12 +20,12 @@ margin-top:20px;
 }
 
 #score{
-font-size:28px;
+font-size:32px;
 margin-top:10px;
 }
 
 #info{
-font-size:18px;
+font-size:22px;
 margin-top:10px;
 }
 </style>
@@ -279,8 +281,13 @@ const values={
 };
 const canvas=document.getElementById("board");
 const ctx=canvas.getContext("2d");
-const center=250;
-const radius=200;
+const size = Math.min(window.innerWidth * 0.9, 500);
+
+canvas.width = size;
+canvas.height = size;
+
+const center = size/2;
+const radius = size*0.4;
 
 let score;
 let optimal=[];
