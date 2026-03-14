@@ -177,7 +177,7 @@ const checkouts={
     "_optimal": ["T17", "T16", "D16"]
 },
 132: {"optimal": ["D25", "T14", "D20"], "miss": ["S25", "T19", "D25"],
-    "_optmial": ["T18", "T18", "D12"]
+    "_optimal": ["T18", "T18", "D12"]
 },
 133: {"optimal": ["T20", "T11", "D20"],
     "_optimal": ["T20", "T19", "D8"]
@@ -242,6 +242,7 @@ let miss2Activated=false;
 let alt=false;
 let rest;
 let false_click=0;
+let alt_act = false;
 
 // Dartboard zeichnen
 function drawBoard(){
@@ -352,14 +353,14 @@ canvas.addEventListener("click", e=>{
     let correct=optimal[step];
     let alt_ind= false;
 
-    if (alt_out.length>0 && field===alt_out && field!==correct && field!==alt && step<2){
+    if (alt_out && field===alt_out && field!==correct && field!==alt && step<2){
         if(alt_act){alt=alt_out; alt_ind=true; _optimal=alternative;
         }else{correct=alt_out; alt_ind=true; optimal=alternative;
         }
         
     }
 
-    if(field===alt && alt.length>0 && field!==correct && step<2){alt_act=true}
+    if(field===alt && alt && field!==correct && step<2){alt_act=true}
 
     if(field===correct && !alt_act){
         // ⚡ Miss nur nach erstem Dart
