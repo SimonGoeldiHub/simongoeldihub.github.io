@@ -108,11 +108,12 @@ const checkouts={
 87: {"optimal": ["T17", "D18"], "miss": ["S17", "S20", "D20"], "alt": ["S17", "T20", "D5"],
     "_optimal": ["S17", "S20", "D20"]
 },
-88: {"optimal": ["T20", "D14"], "miss": ["S20", "T18", "D7"],
+88: {"optimal": ["T20", "D14"], "miss": ["S20", "T18", "D7"], "alt": ["S20", "S18", "D25"],
     "_optimal": ["T16", "D20"]
 },
-89: {"optimal": ["T19", "D16"], "miss": ["S19", "T20", "D5"]},
-90: {"optimal": ["T20", "D15"], "miss": ["S20", "T20", "D5"]},
+89: {"optimal": ["T19", "D16"], "miss": ["S19", "T20", "D5"], "alt": ["S19", "S20", "D25"]
+},
+90: {"optimal": ["T20", "D15"], "miss": ["S20", "T20", "D5"], "alt": ["S20", "S20", "D25"]},
 
 91: {"optimal": ["T17", "D20"], "miss": ["S17", "T14", "D16"]},
 92: {"optimal": ["T20", "D16"], "miss": ["S20", "T16", "D12"]},
@@ -403,7 +404,7 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
         } else if(step === 1 && !missActivated) {
-            document.getElementById("info").innerText="Hit!";        
+            document.getElementById("info").innerText=`Hit ${field}!`;        
         }
     }else if(field===alt){
 
@@ -448,7 +449,7 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
         } else if(step === 1 && !missActivated) {
-            document.getElementById("info").innerText="Hit!";
+            document.getElementById("info").innerText=`Hit ${field}!`;
         }
 
     } else {
