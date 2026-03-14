@@ -283,7 +283,7 @@ function newRound(){
     drawBoard();
 
     let keys= Object.keys(checkouts);
-    score=67 //keys[Math.floor(Math.random()*keys.length)];
+    score=keys[Math.floor(Math.random()*keys.length)];
     rest=score
     optimal=[...checkouts[score].optimal];
     miss=checkouts[score].miss||[];
@@ -375,7 +375,7 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
         }
 
-        rest = rest - values[correct[0]] * parseInt(correct.slice(1));
+        rest = rest - values[optimal[step][0]] * parseInt(optimal[step].slice(1));
 
         // Punkt malen
         ctx.beginPath();
@@ -420,7 +420,7 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
         }
 
-        rest = rest - values[alt[0]] * parseInt(alt.slice(1));
+        rest = rest - values[_optimal[step][0]] * parseInt(_optimal[step].slice(1));
 
         // Punkt malen
         ctx.beginPath();
