@@ -41,35 +41,76 @@ margin-top:10px;
 const numbers=[20,1,18,4,13,6,10,15,2,17,3,19,7,16,8,11,14,9,12,5];
 
 const checkouts={
-61: {"optimal": ["T15", "D8"], "miss": ["S15", "S14", "D16"]},
+61: {"optimal": ["T15", "D8"], "miss": ["S15", "S14", "D16"],
+    "alt": ["S15", "S6", "D20"]
+},
 62: {"optimal": ["T10", "D16"], "miss": ["S10", "S20", "D16"]},
 63: {"optimal": ["T13", "D12"], "miss": ["S13", "S18", "D16"]},
 64: {"optimal": ["T16", "D8"], "miss": ["S16", "S16", "D16"]},
 65: {"optimal": ["T11", "D16"], "miss": ["S11", "S14", "D20"]},
-66: {"optimal": ["T10", "D18"], "miss": ["S10", "S16", "D20"]},
-67: {"optimal": ["T17", "D8"], "miss": ["S17", "S18", "D16"]},
-68: {"optimal": ["T20", "D4"], "miss": ["S20", "S16", "D16"]},
+66: {"optimal": ["T10", "D18"], "miss": ["S10", "S16", "D20"],
+    "_optimal": ["S16", "S18", "D20"],
+},
+67: {"optimal": ["T17", "D8"], "miss": ["S17", "S18", "D16"],
+    "_optimal": ["S17", "S18", "D16"], "alt": ["S17", "S10", "D20"]
+},
+68: {"optimal": ["T20", "D4"], "miss": ["S20", "S16", "D16"],
+    "_optimal": ["S20", "S16", "D16"], "alt": ["S20", "S8", "D20"]
+},
 69: {"optimal": ["T15", "D12"], "miss": ["S15", "S14", "D20"]},
-70: {"optimal": ["T18", "D8"], "miss": ["S18", "S20", "D16"]},
-71: {"optimal": ["T13", "D16"], "miss": ["S13", "S18", "D20"]},
-72: {"optimal": ["T16", "D12"], "miss": ["S16", "S16", "D20"]},
-73: {"optimal": ["T17", "D11"], "miss": ["S17", "S16", "D20"]},
-74: {"optimal": ["T14", "D16"], "miss": ["S14", "S20", "D20"]},
-75: {"optimal": ["T17", "D12"], "miss": ["S17", "S18", "D20"]},
-76: {"optimal": ["T20", "D8"], "miss": ["S20", "S16", "D20"]},
+70: {"optimal": ["T18", "D8"], "miss": ["S18", "S20", "D16"],
+    "_optimal": ["S18", "S20", "D16"], "alt": ["S18", "S12", "D20"]
+},
+71: {"optimal": ["T13", "D16"], "miss": ["S13", "S18", "D20"],
+    "_optimal": ["S13", "S18", "D20"]
+},
+72: {"optimal": ["T16", "D12"], "miss": ["S16", "S16", "D20"],
+    "_optimal": ["S16", "S16", "D20"]
+},
+73: {"optimal": ["T17", "D11"], "miss": ["S17", "S16", "D20"],
+    "_optimal": ["S17", "S16", "D20"]
+},
+74: {"optimal": ["T14", "D16"], "miss": ["S14", "S20", "D20"],
+    "_optimal": ["S14", "S20", "D20"]
+},
+75: {"optimal": ["T17", "D12"], "miss": ["S17", "S18", "D20"],
+    "_optimal": ["S17", "S18", "D20"]
+},
+76: {"optimal": ["T20", "D8"], "miss": ["S20", "S16", "D20"],
+    "_optimal": ["S20", "S16", "D20"]
+},
 77: {"optimal": ["T19", "D10"], "miss": ["S19", "S18", "D20"]},
-78: {"optimal": ["T18", "D12"], "miss": ["S18", "S20", "D20"]},
-79: {"optimal": ["T19", "D11"], "miss": ["S19", "S20", "D20"]},
-80: {"optimal": ["T20", "D10"], "miss": ["S20", "S20", "D20"]},
+78: {"optimal": ["T18", "D12"], "miss": ["S18", "S20", "D20"],
+    "_optimal": ["S18", "S20", "D20"]
+},
+79: {"optimal": ["T19", "D11"], "miss": ["S19", "S20", "D20"],
+    "_optimal": ["S19", "S20", "D20"]
+},
+80: {"optimal": ["T20", "D10"], "miss": ["S20", "S20", "D20"],
+    "_optimal": ["S20","S20","D20"] 
+},
 
-81: {"optimal": ["T19", "D12"], "miss": ["S19", "T12", "D13"]},
-82: {"optimal": ["D25", "D16"], "miss": ["S25", "S17", "D20"]},
-83: {"optimal": ["T17", "D16"], "miss": ["S17", "T16", "D9"]},
-84: {"optimal": ["T20", "D12"], "miss": ["S20", "T14", "D11"]},
-85: {"optimal": ["T15", "D20"], "miss": ["S15", "T20", "D5"]},
-86: {"optimal": ["T18", "D16"], "miss": ["S18", "T18", "D7"]},
-87: {"optimal": ["T17", "D18"], "miss": ["S17", "T20", "D5"]},
-88: {"optimal": ["T20", "D14"], "miss": ["S20", "T18", "D7"]},
+81: {"optimal": ["T19", "D12"], "miss": ["S19", "T12", "D13"], "alt": ["S19", "S12", "D25"],
+    "_optimal": ["T15", "D18"], "_miss": ["S15", "T16", "D9"]
+},
+82: {"optimal": ["D25", "D16"], "miss": ["S25", "S17", "D20"],
+    "_optimal": ["T14", "D20"], "_miss": ["S14", "T18", "D7"], "alt": ["S14", "S18", "D25"]
+},
+83: {"optimal": ["T17", "D16"], "miss": ["S17", "T16", "D9"], "alt": ["S17", "S16", "D25"],
+},
+84: {"optimal": ["T20", "D12"], "miss": ["S20", "T14", "D11"], "alt": ["S20", "S14", "D25"],
+    "_optimal": ["T16", "D18"], "_miss": ["S16", "T18", "D7"],
+},
+85: {"optimal": ["T15", "D20"], "miss": ["S15", "T20", "D5"], "alt": ["S15", "S20", "D25"],
+},
+86: {"optimal": ["T18", "D16"], "miss": ["S18", "T18", "D7"], "alt": ["S18", "S18", "D25"],
+},
+87: {"optimal": ["T17", "D18"], "miss": ["S17", "S20", "D20"], "alt": ["S17", "T20", "D5"],
+    "_optimal": ["S17", "S20", "D20"]
+},
+88: {"optimal": ["T20", "D14"], "miss": ["S20", "T18", "D7"],
+    "_optimal": ["T16", "D20"]
+},
 89: {"optimal": ["T19", "D16"], "miss": ["S19", "T20", "D5"]},
 90: {"optimal": ["T20", "D15"], "miss": ["S20", "T20", "D5"]},
 
@@ -114,8 +155,8 @@ const checkouts={
 123: {"optimal": ["T19", "T16", "D9"], "miss": ["S19", "T18", "D25"], "miss2": ["T19", "S16", "D25"],
     "_optimal": ["D25", "T19", "D8"], "_miss": ["S25", "T20", "D19"]
 },
-124: {"optimal": ["T20", "S16", "D8"], "miss": ["S20", "T18", "D25"], "alt": ["T20", "S14", "D25"],
-    
+124: {"optimal": ["T20", "T16", "D8"], "miss": ["S20", "T18", "D25"], 
+    "_optimal": ["T20", "S14", "D25"],  
 },
 125: {"optimal": ["D25", "T17", "D12"], "miss": ["S25", "T20", "D20"],
     "_optimal": ["T15", "T16", "D16"], "_miss": ["S15", "T20", "D25"]
@@ -177,6 +218,11 @@ const checkouts={
 170: {"optimal": ["T20", "T20", "D25"]}
 };
 
+const values={
+"S": 1,
+"T": 3,
+"D": 2
+};
 const canvas=document.getElementById("board");
 const ctx=canvas.getContext("2d");
 const center=250;
@@ -189,10 +235,13 @@ let miss2=[];
 let _optimal=[];
 let _miss=[];
 let _miss2=[];
+let alternative=[];
 let step=0;
 let missActivated=false;
 let miss2Activated=false;
-let alt=false
+let alt=false;
+let rest;
+let false_click=0;
 
 // Dartboard zeichnen
 function drawBoard(){
@@ -234,17 +283,20 @@ function newRound(){
     drawBoard();
 
     let keys= Object.keys(checkouts);
-    score=keys[Math.floor(Math.random()*keys.length)];
+    score=67 //keys[Math.floor(Math.random()*keys.length)];
+    rest=score
     optimal=[...checkouts[score].optimal];
     miss=checkouts[score].miss||[];
     miss2=checkouts[score].miss2||[];
     _optimal=checkouts[score]._optimal||[];
     _miss=checkouts[score]._miss||[];
     _miss2=checkouts[score]._miss2||[];
+    alternative=checkouts[score].alt||[];
     step=0;
     missActivated=false;
     miss2Activated=false;
     alt_act = false
+    false_click=0;
 
     document.getElementById("score").innerText="Score: "+score;
     document.getElementById("info").innerText="";
@@ -293,35 +345,51 @@ canvas.addEventListener("click", e=>{
     let rect=canvas.getBoundingClientRect();
     let x=e.clientX-rect.left;
     let y=e.clientY-rect.top;
-
     let field=getField(x,y);
     if(!field) return;
-
+    let alt_out = alternative[step];
     let alt=_optimal[step];
     let correct=optimal[step];
+    let alt_ind= false;
+
+    if (alt_out.length>0 && field===alt_out && field!==correct && field!==alt && step<2){
+        if(alt_act){alt=alt_out; alt_ind=true; _optimal=alternative;
+        }else{correct=alt_out; alt_ind=true; optimal=alternative;
+        }
+        
+    }
 
     if(field===alt && alt.length>0 && field!==correct && step<2){alt_act=true}
 
     if(field===correct && !alt_act){
         // ⚡ Miss nur nach erstem Dart
-        if(step===0 && !missActivated && miss.length>0 && Math.random()<0.5){
+        false_click=0;
+        if(step===0 && !alt_ind && !missActivated && miss.length>0 && Math.random()<0.5){
             optimal=miss;
             missActivated=true;
             document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
         }
-        if(step===1 && !miss2Activated && miss.length>0 && Math.random()<0.5){
+        if(step===1 && !alt_ind && !missActivated && !miss2Activated && miss2.length>0 && Math.random()<0.5){
             optimal=miss2;
             miss2Activated=true;
             document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
         }
 
+        rest = rest - values[correct[0]] * parseInt(correct.slice(1));
+
         // Punkt malen
         ctx.beginPath();
         if(missActivated){
             let coords=getFieldCenter(optimal[step]);
+            if (optimal[step] == "S25"){
+                coords = {x:250, y:230}
+            }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else if(miss2Activated){
             let coords=getFieldCenter(optimal[step]);
+            if (optimal[step] == "S25"){
+                coords = {x:250, y:230}
+            }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else {
             ctx.arc(x, y, 5, 0, Math.PI*2);
@@ -334,12 +402,14 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
         } else if(step === 1 && !missActivated) {
-            document.getElementById("info").innerText="Richtig! ✨";        
+            document.getElementById("info").innerText="Hit!";        
         }
     }else if(field===alt){
+
+        false_click=0;
         alt_act=true
         // ⚡ Miss nur nach erstem Dart
-        if(step===0 && !missActivated && _miss.length>0 && Math.random()<0.5){
+        if(step===0 && !missActivated && _miss.length>0 && Math.random()<0.5 && alt!==_miss){
             _optimal=_miss;
             missActivated=true;
             document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
@@ -350,13 +420,21 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
         }
 
+        rest = rest - values[alt[0]] * parseInt(alt.slice(1));
+
         // Punkt malen
         ctx.beginPath();
         if(missActivated){
             let coords=getFieldCenter(_optimal[step]);
+            if (_optimal[step] == "S25"){
+                coords = {x:250, y:230}
+            }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else if(miss2Activated){
             let coords=getFieldCenter(_optimal[step]);
+            if (_optimal[step] == "S25"){
+                coords = {x:250, y:230}
+            }
             ctx.arc(coords.x, coords.y, 5, 0, Math.PI*2);
         } else {
             ctx.arc(x, y, 5, 0, Math.PI*2);
@@ -369,10 +447,23 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
         } else if(step === 1 && !missActivated) {
-            document.getElementById("info").innerText="Richtig! ✨";
+            document.getElementById("info").innerText="Hit!";
         }
+
     } else {
-        document.getElementById("info").innerText=`❌ Falsch (${field})`;
+        false_click++
+        if (false_click>3){ 
+            if (alt_act){document.getElementById("info").innerText=`❌ Falsch (${field}) - Weg: ${_optimal.slice(step).join(", ")}`;
+            } else {
+                document.getElementById("info").innerText=`❌ Falsch (${field}) - optimaler Weg: ${optimal.slice(step).join(", ")}`;
+            }
+
+        }else if (false_click>2 && step>0){
+
+            document.getElementById("info").innerText=`❌ Falsch (${field}), Rest: ${rest}`;
+        }else{
+            document.getElementById("info").innerText=`❌ Falsch (${field})`;
+        }
     }
 });
 
