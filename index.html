@@ -152,10 +152,12 @@ const checkouts={
 },
 110: {"optimal": ["T20", "S10", "D20"], "miss": ["S20", "T18", "D18"], "alt": ["T20", "S18", "D16"]},
 
-111: {"optimal": ["T20", "S11", "D20"], "miss": ["S20", "T17", "D20"],
+111: {"optimal": ["T20", "S11", "D20"], "miss": ["S20", "T17", "D20"], "alt": ["T20", "S19", "D16"],
     "_optimal": ["T19", "S14", "D20"], "_miss": ["S19", "T20", "D16"]
 },
-112: {"optimal": ["T20", "S12", "D20"], "miss": ["S20", "T20", "D16"]},
+112: {"optimal": ["T20", "S12", "D20"], "miss": ["S20", "T20", "D16"],
+    "alt": ["T20", "S20", "D16"], 
+},
 113: {"optimal": ["T20", "S13", "D20"], "miss": ["S20", "T19", "D18"]},
 114: {"optimal": ["T20", "S14", "D20"], "miss": ["S20", "T18", "D20"]},
 115: {"optimal": ["T20", "S15", "D20"], "miss": ["S20", "T19", "D19"],
@@ -313,6 +315,7 @@ let alt=false;
 let rest;
 let false_click=0;
 let alt_act = false;
+let hit = true;
  let rings=[
     radius,
     radius*0.85,
@@ -363,7 +366,7 @@ function newRound(){
     drawBoard();
 
     let keys= Object.keys(checkouts);
-    score=keys[Math.floor(Math.random()*keys.length)];
+    score=67 //keys[Math.floor(Math.random()*keys.length)];
     rest=score
     optimal=[...checkouts[score].optimal];
     miss=checkouts[score].miss||[];
@@ -449,11 +452,13 @@ canvas.addEventListener("click", e=>{
         if(step===0 && !alt_ind && !missActivated && miss.length>0 && Math.random()<0.5){
             optimal=miss;
             missActivated=true;
+            hit=false;
             document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
         }
         if(step===1 && !alt_ind && !missActivated && !miss2Activated && miss2.length>0 && Math.random()<0.5){
             optimal=miss2;
             miss2Activated=true;
+            hit=false;
             document.getElementById("info").innerText=`⚠️ Miss ${optimal[step]}`;
         }
 
@@ -482,13 +487,14 @@ canvas.addEventListener("click", e=>{
         step++;
         if(step>=optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
-            setTimeout(newRound,1500);
-        } else if(step<3 && !miss2Activated && !missActivated && !alt_ind) {
+            setTimeout(newRound,1500);   
             document.getElementById("info").innerText=`Hit ${field}!`;
-        } else if(step<3 && !miss2Activated && !missActivated && alt_ind) {
+        } else if(step<3 && hit && !alt_ind) {
+            document.getElementById("info").innerText=`Hit ${field}!`;
+        } else if(step<3 && hit && alt_ind) {
             document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
-
+        hit=true;
     }else if(field===alt){
 
         false_click=0;
@@ -497,11 +503,13 @@ canvas.addEventListener("click", e=>{
         if(step===0 && !missActivated && _miss.length>0 && Math.random()<0.5 && alt!==_miss){
             _optimal=_miss;
             missActivated=true;
+            hit=false;
             document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
         }
         if(step===1 && !miss2Activated && _miss2.length>0 && Math.random()<0.5){
             _optimal=_miss2;
             miss2Activated=true;
+            hit=false;
             document.getElementById("info").innerText=`⚠️ Miss ${_optimal[step]}`;
         }
 
@@ -531,12 +539,12 @@ canvas.addEventListener("click", e=>{
         if(step>=_optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
-        } else if(step<3 && !missActivated && missActivated &&!alt_ind) {
+        } else if(step<3 && hit && !alt_ind) {
             document.getElementById("info").innerText=`Hit ${field}!`;
-        } else if(step<3 && !missActivated && !miss2Activated && alt_ind) {
+        } else if(step<3 && hit && alt_ind) {
             document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
-
+        hit=true;
     } else {
         false_click++
         if (false_click>3){ 
