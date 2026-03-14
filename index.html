@@ -488,7 +488,6 @@ canvas.addEventListener("click", e=>{
         if(step>=optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);   
-            document.getElementById("info").innerText=`Hit ${field}!`;
         } else if(step<3 && hit && !alt_ind) {
             document.getElementById("info").innerText=`Hit ${field}!`;
         } else if(step<3 && hit && alt_ind) {
