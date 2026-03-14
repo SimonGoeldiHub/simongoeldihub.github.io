@@ -17,14 +17,14 @@
 "screenshots": [
     {
       "src": "mobile.png",
-      "sizes": "375x667",
+      "sizes": "1008x1794",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Mobile Startseite"
     },
     {
       "src": "desktop.png", 
-      "sizes": "1280x720",
+      "sizes": "1974x1264",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Desktop Ansicht mit allen Funktionen"
