@@ -456,12 +456,12 @@ canvas.addEventListener("click", e=>{
         if(step>=optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
-        } else if(step === 1 && !missActivated && !alt_ind) {
+        } else if(step<3 && !miss2Activated && !missActivated && !alt_ind) {
             document.getElementById("info").innerText=`Hit ${field}!`;
-        } else if(step === 1 && !missActivated && alt_ind) {
+        } else if(step<3 && !miss2Activated && !missActivated && alt_ind) {
             document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
-        
+
     }else if(field===alt){
 
         false_click=0;
@@ -504,9 +504,9 @@ canvas.addEventListener("click", e=>{
         if(step>=_optimal.length){
             document.getElementById("info").innerText="✅ Checkout!";
             setTimeout(newRound,1500);
-        } else if(step === 1 && !missActivated && !alt_ind) {
+        } else if(step<3 && !missActivated && missActivated &&!alt_ind) {
             document.getElementById("info").innerText=`Hit ${field}!`;
-        } else if(step === 1 && !missActivated && alt_ind) {
+        } else if(step<3 && !missActivated && !miss2Activated && alt_ind) {
             document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
 
