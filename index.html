@@ -133,9 +133,11 @@ const checkouts={
 96: {"optimal": ["T20", "D18"], "miss": ["S20", "T20", "D8"]},
 97: {"optimal": ["T19", "D20"], "miss": ["S19", "T18", "D12"]},
 98: {"optimal": ["T20", "D19"], "miss": ["S20", "T18", "D12"]},
-99: {"optimal": ["T19", "S10", "D16"], "miss": ["S19", "T20", "D10"], "alt": ["S19", "T16", "D16"]},
+99: {"optimal": ["T19", "S10", "D16"], "miss": ["S19", "T20", "D10"], "alt": ["T19", "S2", "D20"]},
 100: {"optimal": ["T20", "D20"], "miss": ["S20", "T20", "D10"], "alt": ["S20", "D20", "D20"]},
-101: {"optimal": ["T20", "S9", "D16"], "miss": ["S20", "T17", "D15"], "alt": ["T20", "S1", "D20"]},
+101: {"optimal": ["T20", "S9", "D16"], "miss": ["S20", "T19", "D12"], "alt": ["T20", "S1", "D20"],
+    "_optimal": ["S20", "T19", "D12"],
+},
 102: {"optimal": ["T20", "S10", "D16"], "miss": ["S20", "T14", "D20"], "alt": ["T20", "S2", "D20"]},
 103: {"optimal": ["T19", "S14", "D16"], "miss": ["S19", "T20", "D12"], "alt": ["T19", "S6", "D20"]},
 104: {"optimal": ["T18", "S18", "D16"], "miss": ["S18", "T18", "D16"], "alt": ["T18", "S10", "D20"],
@@ -147,7 +149,7 @@ const checkouts={
 108: {"optimal": ["T20", "S16", "D16"], "miss": ["S20", "T20", "D14"], "alt": ["T20", "S8", "D20"],
     "_optimal": ["T18", "S14", "D20"], "_miss": ["S18", "T18", "D18"]
 },
-109: {"optimal": ["T20", "S9", "D20"], "miss": ["S20", "T19", "D16"], "alt": ["T20", "S9", "D20"],
+109: {"optimal": ["T20", "S9", "D20"], "miss": ["S20", "T19", "D16"], "alt": ["T20", "S17", "D16"],
     "_optimal": ["T19", "S20", "D16"], "_miss": ["S19", "T18", "D18"]
 },
 110: {"optimal": ["T20", "S10", "D20"], "miss": ["S20", "T18", "D18"], "alt": ["T20", "S18", "D16"]},
@@ -166,9 +168,13 @@ const checkouts={
 116: {"optimal": ["T20", "S16", "D20"], "miss": ["S20", "T20", "D18"],
     "_optimal": ["T19", "S19", "D20"], "_miss": ["S19", "T19", "D20"]
 },
-117: {"optimal": ["T20", "S17", "D20"], "miss": ["S20", "T19", "D20"]},
-118: {"optimal": ["T20", "S18", "D20"], "miss": ["S20", "T20", "D19"]},
-119: {"optimal": ["T19", "S12", "D25"], "miss": ["S19", "T20", "D20"]},
+117: {"optimal": ["T20", "S17", "D20"], "miss": ["S20", "T19", "D20"],
+    "_optimal": ["T19", "S20", "D20"], "_miss": ["S19", "T20", "D19"]
+},
+118: {"optimal": ["T20", "S18", "D20"], "miss": ["S20", "T20", "D19"]
+},
+119: {"optimal": ["T19", "T12", "D13"], "miss": ["S19", "T20", "D20"], "miss2": ["T19", "S12", "D25"],
+},
 120: {"optimal": ["T20", "S20", "D20"], "miss": ["S20", "T20", "D20"]},
 
 121: {"optimal": ["T20", "T11", "D14"], "miss": ["S20", "T17", "D25"], "miss2": ["T20", "S11", "D25"],
@@ -242,7 +248,7 @@ const checkouts={
     "_optimal": ["T20", "T15", "D20"]
  },
 146: {"optimal": ["T20", "T18", "D16"],
-    "_optimal": ["T20", "T18", "D16"]
+    "_optimal": ["T19", "T19", "D16"]
 },
 147: {"optimal": ["T20", "T17", "D18"],
     "_optimal": ["T19", "T18", "D18"]
@@ -316,6 +322,7 @@ let rest;
 let false_click=0;
 let alt_act = false;
 let hit = true;
+let standard = true;
  let rings=[
     radius,
     radius*0.85,
@@ -380,6 +387,7 @@ function newRound(){
     miss2Activated=false;
     alt_act = false
     false_click=0;
+    standard = true;
 
     document.getElementById("score").innerText="Score: "+score;
     document.getElementById("info").innerText="";
@@ -444,7 +452,8 @@ canvas.addEventListener("click", e=>{
         alt=alt_out; alt_ind=true; _optimal=alternative;    
     }
 
-    if(field===alt && alt && field!==correct && step<2){alt_act=true}
+    if(field===alt && alt && field!==correct && step===0){alt_act=true}
+    if(field===alt && alt && field!==correct && _optimal[0]===optimal[0] && step===1){alt_act=true}
 
     if(field===correct && !alt_act){
         // ⚡ Miss nur nach erstem Dart
