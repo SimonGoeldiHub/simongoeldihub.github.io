@@ -147,7 +147,7 @@ const checkouts={
 106: {"optimal": ["T20", "S14", "D16"], "miss": ["S20", "T18", "D16"], "alt": ["T20", "S6", "D20"]},
 107: {"optimal": ["T19", "S18", "D16"], "miss": ["S19", "T20", "D19"], "alt": ["T19", "S10", "D20"]},
 108: {"optimal": ["T20", "S16", "D16"], "miss": ["S20", "T20", "D14"], "alt": ["T20", "S8", "D20"],
-    "_optimal": ["T18", "S14", "D20"], "_miss": ["S18", "T18", "D18"]
+    "_optimal": ["T19", "S19", "D16"], "_miss": ["S19", "T19", "D16"]
 },
 109: {"optimal": ["T20", "S9", "D20"], "miss": ["S20", "T19", "D16"], "alt": ["T20", "S17", "D16"],
     "_optimal": ["T19", "S20", "D16"], "_miss": ["S19", "T18", "D18"]
@@ -503,7 +503,7 @@ canvas.addEventListener("click", e=>{
             document.getElementById("info").innerText=`Hit ${field} (alternative Route)!`;
         }
         hit=true;
-    }else if(field===alt){
+    }else if(field===alt && alt_act){
 
         false_click=0;
         alt_act=true
